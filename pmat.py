@@ -235,6 +235,27 @@ class PMat:
         
         return subvector
                 
+    def __add__(self,other):
+        if (type(other) in [int,float]):
+            # Add primative simply
+            # Note: Does not respect unit; Takes whatever unit the PMat is
+            new = PMat(self)
+            new._n += other
+            return new
+        elif (type(other) == type(PMat())):
+            if (self.isUnitless() or self.isSame(other)):
+                # This PMat has no unit (or is the same), so act like self is int
+                new = PMat(other)
+                new._n += self._n
+                return new
+            elif (other.isUnitless()):
+                # Other PMat has no unit, so it acts like an int
+                new = PMat(self)
+                new._n += other._n
+                return new
+        raise Exception("Invalid addition with:",other,type(other))
+            
+    
 
 if __name__ == '__main__':
     def test_PMat():
@@ -265,7 +286,10 @@ if __name__ == '__main__':
         PMat.define("bar","kPa")
         
         
-        PMat(0,"kmkm").debug
+        p1 = PMat(3,"N")
+        p2 = PMat(3,"rad")
+        print(p1+p2)
+        print(p1,p2)
         # PMat(PMat(5,"V")).debug
         # PMat(0,"mL").debug
         # PMat(0,"mm").debug
