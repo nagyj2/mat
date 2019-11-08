@@ -59,11 +59,21 @@ class PMat:
                 self._p[index] += prefix * exponent
                 self._e[index] += exponent
         
-    @property
-    def debug(self):
-        print(self._n)
-        print(self._p)
-        print(self._e)
+    def __str__(self):
+        return str(self._n) +'\n'+ str(self._p) +'\n'+ str(self._e)
+            
+    def isSame(self,other):
+        # Returns whether the self and other PMat are of the same type
+        for i in range(len(self._e)):
+            if (self._e[i] != other._e[i]):
+                return False
+        return True
+        
+    def isUnitless(self):
+        # Returns whether this PMat is unitless
+        for iu in self._e:
+            if (iu!=0): return False
+        return True
             
     @staticmethod
     def _re_un():
