@@ -100,7 +100,7 @@ class PMat:
         # Otherwise, remove a single custom unit
         for cunit in PMat._customunit:
             if (short_or_all == cunit):
-                del PMat._custommean[short]
+                del PMat._custommean[short_or_all]
                 PMat._customunit.remove(cunit)
                 return
             
@@ -193,9 +193,36 @@ class PMat:
             else:
                 vector.append([PMat._lookup_p[prefix],PMat._lookup_u[unit],exponent])
                 
+        # Compress similar units to reduce number of si unit 'pieces'
+        vector = PMat._compressVector(vector)
         # Sort so that order doesnt matter
         vector.sort()
         return vector
+    
+    @staticmethod
+    def _compressVector(vector):
+        subvector = []
+        
+        i= 0
+        while (i < len(vector)):
+            # Initial values to check
+            ip, iu, ie = vector[i][0], vector[i][1], vector[i][2]
+            # New values to append to subvector - start with original
+            np, nu, ne = ip, iu, ie
+            # Start looking at next unit
+            j = i + 1
+            while (j < len(vector)):
+                jp, ju, je = vector[j][0], vector[j][1], vector[j][2]
+                if (ip == jp and iu == ju and ie == je):
+                    ne += je
+                    del vector[j]
+                else:
+                    j += 1
+            subvector.append([np,nu,ne])
+            i += 1
+        
+        return subvector
+                
 
 if __name__ == '__main__':
     def test_PMat():
@@ -224,8 +251,9 @@ if __name__ == '__main__':
         PMat.define("L","dm^3")
         PMat.define("eV","C")
         PMat.define("bar","kPa")
-    
-        PMat(0,"bar").debug
+        
+        PMat(0,"m*gsssm").debug
+        # PMat(PMat(5,"V")).debug
         # PMat(0,"mL").debug
         # PMat(0,"mm").debug
         # PMat(0,"mm").debug
