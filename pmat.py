@@ -184,7 +184,30 @@ class PMat:
 
 
 if __name__ == '__main__':
-    PMat.define("N","kgm/s2")
+    def test_PMat():
+        PMat.define("Hz","/s")
+        PMat.define("rad","m/m")
+        PMat.define("sr","m2/m2")
+        PMat.define("N","kgm/s2")
+        PMat.define("Pa","N/m2")
+        PMat.define("J","Nm")
+        PMat.define("W","J/s")
+        PMat.define("C","sA")
+        PMat.define("V","W/A")
+        PMat.define("F","C/V")
+        PMat.define("O","V/A")
+        PMat.define("S","/O")
+        PMat.define("Wb","J/A")
+        PMat.define("dC","K")
+        PMat.define("lm","cd/sr")
+        PMat.define("lx","cd/srm2")
+        PMat.define("Gy","J/kg")
+        PMat.define("kat","mol/s")
+        PMat.define("T","Vs/m^2")
+        PMat.define("H","Vs/A")
+        PMat.define("S","s^3A^2/kgm^2")
+        PMat.define("hr","s")
     
-    m = PMat(0,"/N")
-    m = PMat(0,"N")
+        m = PMat(0,"V")
+        
+    test_PMat()
