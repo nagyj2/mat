@@ -42,12 +42,27 @@ class PMat:
         
         if (type(num_or_pmat) == PMat):
             # Given another PMat as input; simply copy it
-            pass
+            self._n = num_or_pmat._n
+            self._p = num_or_pmat._p
+            self._e = num_or_pmat._e
         else:
             # Given number and unit separately
             self._n = num_or_pmat
             representation = PMat._decomposeUnit(unit)
-            print(representation)
+            
+            for si_unit in representation:
+                prefix = si_unit[0]
+                index = si_unit[1]
+                exponent = si_unit[2]
+                
+                self._p[index] += prefix * exponent
+                self._e[index] += exponent
+        
+    @property
+    def debug(self):
+        print(self._n)
+        print(self._p)
+        print(self._e)
             
     @staticmethod
     def _re_un():
