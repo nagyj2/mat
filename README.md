@@ -8,7 +8,9 @@ A PMat class can be declared using the class `PMat(num,unit)` where `num` is a s
 - Create PMat class
   - Use re's to parse input unit
     - Custom units will be decomposed on initial parse
-    - After successful parse, compress units so every present unit appears only once 
+    - After successful parse, compress units so every present unit appears only once
+    - Custom units should be stored by their decomposition
+      - Allows for printing to quickly identify if it should print as a custom unit instead of a SI conglomeration
   - Add int operation
     - Following operation creates completely new PMat object to prevent side effects
     - Add
@@ -18,5 +20,7 @@ A PMat class can be declared using the class `PMat(num,unit)` where `num` is a s
     - Modulo
     - Floor
     - Ceiling
+    - Should addition respect unit?
+      - ie: 1km + 1 = 1.001km or 2km?
 - Create function(s) that will convert prefix of a PMat object
   - Take string unit as input to specify preferred form of the PMat
