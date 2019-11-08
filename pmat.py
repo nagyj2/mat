@@ -1,5 +1,6 @@
 #!/usr/local/bin/python3
 import re
+from math import log
 
 class PMat:
     
@@ -194,7 +195,7 @@ class PMat:
                 vector.append([PMat._lookup_p[prefix],PMat._lookup_u[unit],exponent])
                 
         # Compress similar units to reduce number of si unit 'pieces'
-        vector = PMat._compressVector(vector)
+        # vector = PMat._compressVector(vector)
         # Sort so that order doesnt matter
         vector.sort()
         return vector
@@ -213,7 +214,8 @@ class PMat:
             j = i + 1
             while (j < len(vector)):
                 jp, ju, je = vector[j][0], vector[j][1], vector[j][2]
-                if (ip == jp and iu == ju and ie == je):
+                if (iu == ju and ie == je):
+                    np = log(10 ** np + 10 ** jp,10)
                     ne += je
                     del vector[j]
                 else:
@@ -252,7 +254,8 @@ if __name__ == '__main__':
         PMat.define("eV","C")
         PMat.define("bar","kPa")
         
-        PMat(0,"m*gsssm").debug
+        
+        PMat(0,"kmkm").debug
         # PMat(PMat(5,"V")).debug
         # PMat(0,"mL").debug
         # PMat(0,"mm").debug
