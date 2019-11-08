@@ -27,7 +27,7 @@ class PMat:
         "u" : -6, "n" : -9,
         "p" :-12, "f" :-15,
         "a" :-18
-    } # To correlate a prefix with a number
+    } # To correlate a prefix with a number (10 ^ <prefix #>)
     
     _customunit = []   # Custom units - each element is tuple; first element has short form and second has expanded form
     _custommean = {}
