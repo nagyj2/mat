@@ -29,8 +29,8 @@ class PMat:
         "a" :-18
     } # To correlate a prefix with a number (10 ^ <prefix #>)
     
-    _customunit = []   # Custom units - each element is tuple; first element has short form and second has expanded form
-    _custommean = {}
+    _customunit = [] # Available custom units
+    _custommean = {} # Dictionary relating custom units to their SI counterpart
     
     def __init__(self,num_or_pmat=0,unit=""):
         # PMat numerical variable (not factoring in prefix)
