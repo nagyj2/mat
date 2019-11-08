@@ -171,6 +171,8 @@ class PMat:
             # If unit is a list, it was a decomposed custom unit; Append all elements
             if (type(unit) == list):
                 for subunit in unit:
+                    # If the custom unit was raised to a power, raise the subunit's power
+                    subunit[2] *= exponent
                     vector.append(subunit)
             # Append only SI units
             else:
