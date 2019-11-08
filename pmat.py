@@ -180,9 +180,6 @@ class PMat:
         vector.sort()
         return vector
 
-
-
-
 if __name__ == '__main__':
     def test_PMat():
         PMat.define("Hz","/s")
@@ -207,7 +204,13 @@ if __name__ == '__main__':
         PMat.define("H","Vs/A")
         PMat.define("S","s^3A^2/kgm^2")
         PMat.define("hr","s")
+        PMat.define("L","dm^3")
+        PMat.define("eV","C")
+        PMat.define("bar","kPa")
     
-        m = PMat(0,"V")
+        PMat(0,"bar").debug
+        # PMat(0,"mL").debug
+        # PMat(0,"mm").debug
+        # PMat(0,"mm").debug
         
     test_PMat()
