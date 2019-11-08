@@ -8,6 +8,7 @@ A PMat class can be declared using the class `PMat(num,unit)` where `num` is a s
 - Create PMat class
   - Use re's to parse input unit
     - Custom units will be decomposed on initial parse
+    - After successful parse, compress units so every present unit appears only once 
   - Add int operation
     - Following operation creates completely new PMat object to prevent side effects
     - Add
